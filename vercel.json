@@ -1,4 +1,4 @@
 {
-  "buildCommand": "npm run build -w client && node -e \"const fs=require('fs');fs.rmSync('dist',{recursive:true,force:true});fs.cpSync('client/dist','dist',{recursive:true});\"",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist"
 }
