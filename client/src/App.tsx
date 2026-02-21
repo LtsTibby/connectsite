@@ -4,7 +4,7 @@ import type { ConnectionStatus, Participant } from "./types/voice";
 
 function App() {
   const [userId, setUserId] = useState(`web-${Math.random().toString(36).slice(2, 10)}`);
-  const [roomId, setRoomId] = useState("global-room");
+  const roomId = "global-room";
   const [status, setStatus] = useState<ConnectionStatus>("Disconnected");
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [masterVolume, setMasterVolume] = useState(100);
@@ -51,7 +51,7 @@ function App() {
 
   const handleConnect = async () => {
     setLastError("");
-    await voiceClient.connect({ userId: userId.trim(), roomId: roomId.trim() });
+    await voiceClient.connect({ userId: userId.trim() });
   };
 
   const handleDisconnect = () => {
@@ -93,21 +93,13 @@ function App() {
               />
             </label>
 
-            <label className="form-control w-full">
-              <span className="label-text mb-1">Room ID</span>
-              <input
-                className="input input-bordered"
-                value={roomId}
-                onChange={(event) => setRoomId(event.target.value)}
-                disabled={status !== "Disconnected"}
-              />
-            </label>
+            <div className="mt-2 text-sm opacity-80">Room ID: {roomId}</div>
 
             <div className="mt-2 flex gap-2">
               <button
                 className="btn btn-primary"
                 onClick={handleConnect}
-                disabled={status !== "Disconnected" || !userId.trim() || !roomId.trim()}
+                disabled={status !== "Disconnected" || !userId.trim()}
               >
                 Connect
               </button>

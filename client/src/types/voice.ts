@@ -11,5 +11,4 @@ export type Participant = {
 
 export type ConnectArgs = {
   userId: string;
-  roomId: string;
 };

@@ -10,7 +10,7 @@ A lightweight Discord-style voice room MVP:
 ## Stack
 
 - Frontend: React + Vite + DaisyUI
-- Voice framework: PeerJS (public signaling cloud) + WebRTC mesh
+- Voice framework: Agora Web SDK (managed signaling/media)
 
 ## Setup
 
@@ -30,6 +30,16 @@ npm run dev
 ```
 
 Open two browser tabs at `http://localhost:5173`, join the same room, and test voice.
+
+## Required Environment Variable
+
+Set this in Vercel (and optionally in `client/.env` for local dev):
+
+```bash
+VITE_AGORA_APP_ID=your_agora_app_id
+```
+
+The app uses one global room (`global-room`) for everyone.
 
 ## Available Scripts
 
