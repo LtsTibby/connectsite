@@ -14,7 +14,9 @@ type VoiceClientOptions = {
   onError: (message: string) => void;
 };
 
-const AGORA_APP_ID = import.meta.env.VITE_AGORA_APP_ID as string | undefined;
+const AGORA_APP_ID =
+  (import.meta.env.VITE_AGORA_APP_ID as string | undefined) ??
+  "83eb72b1d99247479160b8b0bbba3218";
 const CHANNEL_NAME = "global-room";
 
 export class VoiceClient {
