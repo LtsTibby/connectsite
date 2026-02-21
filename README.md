@@ -10,8 +10,7 @@ A lightweight Discord-style voice room MVP:
 ## Stack
 
 - Frontend: React + Vite + DaisyUI
-- Backend: Node + Express + Socket.IO (signaling only)
-- Voice transport: WebRTC mesh (browser to browser)
+- Voice framework: PeerJS (public signaling cloud) + WebRTC mesh
 
 ## Setup
 
@@ -19,26 +18,11 @@ Install dependencies:
 
 ```bash
 cd client && npm install
-cd ../server && npm install
-```
-
-Copy server env:
-
-```bash
-cd server
-copy .env.example .env
 ```
 
 ## Run
 
 In one terminal:
-
-```bash
-cd server
-npm run dev
-```
-
-In a second terminal:
 
 ```bash
 cd client
@@ -49,12 +33,10 @@ Open two browser tabs at `http://localhost:5173`, join the same room, and test v
 
 ## Available Scripts
 
-- Root: `npm run dev:server`, `npm run dev:client`, `npm run build`
-- Server: `npm run dev`, `npm run build`, `npm start`
+- Root: `npm run dev:client`, `npm run build`
 - Client: `npm run dev`, `npm run build`, `npm run preview`
 
 ## Future Roblox/Proximity Hooks
 
-- `server/src/signaling.ts` includes `canTalk(userId, roomId)` for future game-gated voice checks.
 - Participant types reserve fields for `robloxUserId`, `inGame`, and `position`.
 - Proximity gain attenuation can be added client-side per remote stream in a later pass.

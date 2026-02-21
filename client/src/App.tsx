@@ -2,9 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { VoiceClient } from "./lib/voiceClient";
 import type { ConnectionStatus, Participant } from "./types/voice";
 
-const SIGNALING_URL =
-  import.meta.env.VITE_SIGNALING_URL ?? "http://localhost:4000";
-
 function App() {
   const [userId, setUserId] = useState(`web-${Math.random().toString(36).slice(2, 10)}`);
   const [roomId, setRoomId] = useState("global-room");
@@ -20,7 +17,6 @@ function App() {
   const voiceClient = useMemo(
     () =>
       new VoiceClient({
-        signalingUrl: SIGNALING_URL,
         onStatus: setStatus,
         onParticipants: setParticipants,
         onRemoteStream: (socketId, stream) => {
@@ -85,7 +81,7 @@ function App() {
         <section className="card bg-base-200 shadow-xl">
           <div className="card-body">
             <h1 className="card-title text-3xl">Proximity Voice</h1>
-            <p className="text-sm opacity-80">Open internet voice lobby.</p>
+            <p className="text-sm opacity-80">Browser-hosted internet voice lobby.</p>
 
             <label className="form-control w-full">
               <span className="label-text mb-1">User ID</span>
