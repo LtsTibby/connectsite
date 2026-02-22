@@ -10,8 +10,7 @@ A lightweight Discord-style voice room MVP:
 ## Stack
 
 - Frontend: React + Vite + DaisyUI
-- Signaling: Node + Socket.IO server
-- Voice transport: WebRTC mesh (browser to browser)
+- Voice framework: PeerJS public signaling + WebRTC mesh
 
 ## Setup
 
@@ -19,19 +18,11 @@ Install dependencies:
 
 ```bash
 cd client && npm install
-cd ../server && npm install
 ```
 
 ## Run
 
-In one terminal (server):
-
-```bash
-cd server
-npm run dev
-```
-
-In a second terminal (client):
+In one terminal:
 
 ```bash
 cd client
@@ -40,20 +31,11 @@ npm run dev
 
 Open two browser tabs at `http://localhost:5173`, click connect in both, and test voice.
 
-## Required Environment Variable (Frontend)
-
-Set this in Vercel (or in `client/.env`):
-
-```bash
-VITE_SIGNALING_URL=https://your-voice-server-url
-```
-
 The app uses one global room (`global-room`) for everyone.
 
 ## Available Scripts
 
-- Root: `npm run dev:client`, `npm run dev:server`, `npm run build`
-- Server: `npm run dev`, `npm run build`, `npm start`
+- Root: `npm run dev:client`, `npm run build`
 - Client: `npm run dev`, `npm run build`, `npm run preview`
 
 ## Future Roblox/Proximity Hooks
