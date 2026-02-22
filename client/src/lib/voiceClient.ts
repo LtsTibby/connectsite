@@ -165,12 +165,20 @@ export class VoiceClient {
     return new Promise((resolve) => {
       const hostPeer = new Peer(toHostPeerId(), { debug: 0 });
       let settled = false;
+      const timeout = setTimeout(() => {
+        if (settled) {
+          return;
+        }
+        hostPeer.destroy();
+        finish(false);
+      }, 3000);
 
       const finish = (ok: boolean): void => {
         if (settled) {
           return;
         }
         settled = true;
+        clearTimeout(timeout);
         resolve(ok);
       };
 
@@ -196,11 +204,6 @@ export class VoiceClient {
         hostPeer.destroy();
         finish(false);
       });
-
-      setTimeout(() => {
-        hostPeer.destroy();
-        finish(false);
-      }, 3000);
     });
   }
 
