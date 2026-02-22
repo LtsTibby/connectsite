@@ -81,7 +81,7 @@ function App() {
         <section className="card bg-base-200 shadow-xl">
           <div className="card-body">
             <h1 className="card-title text-3xl">Proximity Voice</h1>
-            <p className="text-sm opacity-80">Browser-hosted internet voice lobby.</p>
+            <p className="text-sm opacity-80">WebRTC internet voice lobby.</p>
 
             <label className="form-control w-full">
               <span className="label-text mb-1">User ID</span>

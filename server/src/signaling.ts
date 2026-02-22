@@ -7,6 +7,7 @@ type IceCandidatePayload = Record<string, unknown>;
 
 const rooms: RoomMap = new Map();
 const sessions: Map<string, SessionData> = new Map();
+const GLOBAL_ROOM_ID = "global-room";
 
 function getRoomParticipants(roomId: string): Participant[] {
   const room = rooms.get(roomId);
@@ -50,13 +51,13 @@ function removeSocketFromRoom(io: Server, socket: Socket): void {
 export function registerSignalingHandlers(io: Server): void {
   io.on("connection", (socket) => {
     socket.on("join-room", (payload: JoinRoomPayload) => {
-      const roomId = payload.roomId?.trim();
+      const roomId = GLOBAL_ROOM_ID;
       const userId = payload.userId?.trim();
 
-      if (!roomId || !userId) {
+      if (!userId) {
         socket.emit("voice-error", {
           code: "INVALID_JOIN",
-          message: "roomId and userId are required.",
+          message: "userId is required.",
         });
         return;
       }

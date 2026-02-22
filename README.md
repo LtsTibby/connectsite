@@ -2,7 +2,7 @@
 
 A lightweight Discord-style voice room MVP:
 
-- Enter `User ID` and `Room ID`
+- Enter `User ID`
 - Click `Connect`
 - Talk with everyone in the room using WebRTC audio
 - See participant mute status in real time
@@ -10,7 +10,8 @@ A lightweight Discord-style voice room MVP:
 ## Stack
 
 - Frontend: React + Vite + DaisyUI
-- Voice framework: Agora Web SDK (managed signaling/media)
+- Signaling: Node + Socket.IO server
+- Voice transport: WebRTC mesh (browser to browser)
 
 ## Setup
 
@@ -18,32 +19,41 @@ Install dependencies:
 
 ```bash
 cd client && npm install
+cd ../server && npm install
 ```
 
 ## Run
 
-In one terminal:
+In one terminal (server):
+
+```bash
+cd server
+npm run dev
+```
+
+In a second terminal (client):
 
 ```bash
 cd client
 npm run dev
 ```
 
-Open two browser tabs at `http://localhost:5173`, join the same room, and test voice.
+Open two browser tabs at `http://localhost:5173`, click connect in both, and test voice.
 
-## Required Environment Variable
+## Required Environment Variable (Frontend)
 
-Set this in Vercel (and optionally in `client/.env` for local dev):
+Set this in Vercel (or in `client/.env`):
 
 ```bash
-VITE_AGORA_APP_ID=your_agora_app_id
+VITE_SIGNALING_URL=https://your-voice-server-url
 ```
 
 The app uses one global room (`global-room`) for everyone.
 
 ## Available Scripts
 
-- Root: `npm run dev:client`, `npm run build`
+- Root: `npm run dev:client`, `npm run dev:server`, `npm run build`
+- Server: `npm run dev`, `npm run build`, `npm start`
 - Client: `npm run dev`, `npm run build`, `npm run preview`
 
 ## Future Roblox/Proximity Hooks
